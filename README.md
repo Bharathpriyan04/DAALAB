@@ -86,17 +86,14 @@ def performance_analysis():
     for size in sizes:
         arr = sorted(random.sample(range(size * 10), size))
         target = arr[random.randint(0, size - 1)]
-
         start = time.perf_counter()
         for _ in range(100):
             idx_is, comp_is = interpolation_search(arr, target)
         is_time = (time.perf_counter() - start) / 100 * 1000
-
         start = time.perf_counter()
         for _ in range(100):
             idx_bs, comp_bs = binary_search(arr, target)
         bs_time = (time.perf_counter() - start) / 100 * 1000
-
         print(f"{size:>10} {is_time:>14.4f} {bs_time:>14.4f} "
               f"{comp_is:>16} {comp_bs:>16}")
 
@@ -104,17 +101,14 @@ def performance_analysis():
 if __name__ == "__main__":
     arr = get_user_array()
     target = get_user_target()
-
     idx_is, comp_is = interpolation_search(arr, target)
     idx_bs, comp_bs = binary_search(arr, target)
-
     print()
     print(f"Array: {arr}")
     print(f"Searching for: {target}")
     print(f"Interpolation Search -> Found at index: {idx_is}, Comparisons: {comp_is}")
     print(f"Binary Search        -> Found at index: {idx_bs}, Comparisons: {comp_bs}")
     print()
-
     run_perf = input("Run the performance analysis on random large arrays too? (y/n): ").strip().lower()
     if run_perf == "y":
         print()
